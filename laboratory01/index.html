@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+    let listOfNumbers = [1,2,3,4,5,6,7,8,9,10];
+
+    function isOdd(number) {
+        return new Promise((resolve, reject)=> {
+            if (number % 2 == 0) {
+                console.log("Rejected Even", number);
+            }
+            else {
+                console.log("Resolved Odd", number);
+            }
+        });
+    } 
+
+    function Iteration(list) {
+        for (let p = 0; p < list.length; p++) {
+            isOdd(list[p]);
+        }
+    }
+    
+    Iteration(listOfNumbers);
+      
+    function getRandomCharacter(){
+        return new Promise((resolve, reject)=> {
+        
+            setTimeout(()=>{
+                
+                let list = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+               
+                let randomPick = Math.floor(Math.random() * list.length);
+                
+                resolve(list[randomPick]);
+            }, 500);
+        });
+    }
+      
+    getRandomCharacter()
+    
+    .then(character => {
+      console.log("Resolved character:", character);
+    })
+    
+    .catch(error => {
+      console.log("Rejected Character:", error);
+    });
+
+    function getData() {
+        return new Promise((resolve, reject)=> {
+            setTimeout(()=> {
+               
+                let random = Math.floor(Math.random() * 200);
+                
+                reject(random);
+            }, 500);
+        });
+    }
+
+    getData()
+    .then(character => {
+      console.log("Resolved Value:", character);
+    }).catch(error => {
+      console.log("Rejected Value:", error);
+    });
+
+    function rejectResolve() {
+        return new Promise((reject, resolve)=> {
+            setTimeout(()=> {
+                for (let p = 0; p < 2; p++){
+                if (p === 1){
+                    console.log("Resolve Function 4");
+                } else {
+                    console.log("Reject Function 4");
+                }
+            }
+            }, 500);
+            
+        });
+    }
+      
+    rejectResolve();
+
+    </script>
+</body>
+</html>
